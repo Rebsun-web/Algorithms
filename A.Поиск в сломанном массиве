@@ -1,0 +1,33 @@
+def binary_search(arr, target):
+    left = 0
+    right = len(arr) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        if int(arr[mid]) == target:
+            return mid
+        if int(arr[left]) <= int(arr[mid]):
+            if int(arr[left]) <= target <= int(arr[mid]):
+                left = left
+                right = mid - 1
+            else:
+                left = mid + 1
+                right = right
+        else:
+            if int(arr[mid]) <= target <= int(arr[right]):
+                left = mid + 1
+                right = right
+            else:
+                left = left
+                right = mid - 1
+    return -1
+
+def broken_search(arr, target) -> int:
+    return binary_search(arr, target)
+
+
+if __name__ == '__main__':
+    n = int(input())
+    lost_elem = int(input())
+    mas = input().split(' ')
+    print(broken_search(mas, lost_elem))
